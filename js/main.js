@@ -27,10 +27,19 @@ function putNumber() {
         autoReply.innerHTML = `El número debe estar
         entre 1 y 100`;
     }
+    if (numberUpdate.value <= 0 || numberUpdate.value >= 100) {
+        autoReply.innerHTML = `El número debe estar
+        entre 1 y 100`;
+    }
 }
 
 buttonElement.addEventListener('click', putNumber);
 
-for (let i = 0; i < 101; i++) {
-    attemptNumber.innerHTML = `Número de intentos: ` + [i];
+let calculator = 0;
+function calculate() {
+    attemptNumber.innerHTML = `Número de intentos: ` + (calculator += 1);
 }
+
+buttonElement.addEventListener('click', calculate);
+
+
