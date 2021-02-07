@@ -11,35 +11,28 @@ function getRandomNumber(max) {
 const thisNumber = getRandomNumber(100)
 console.log(thisNumber);
 
-function putNumber() {
-    console.log(numberUpdate.value);
+let calculator = 0;
+function calculate() {
+    return `Número de intentos: ` + (calculator += 1);
+}
 
-    if (numberUpdate.value > thisNumber) {
-        autoReply.innerHTML = `Demasiado alto`;
-    }
-    if (numberUpdate.value < thisNumber) {
-        autoReply.innerHTML = `Demasiado bajo`;
-    }
-    if (numberUpdate.value == thisNumber) {
-        autoReply.innerHTML = `Has ganado campeona!!!`;
-    }
-    if (numberUpdate.value == "") {
-        autoReply.innerHTML = `El número debe estar
-        entre 1 y 100`;
-    }
-    if (numberUpdate.value <= 0 || numberUpdate.value >= 100) {
-        autoReply.innerHTML = `El número debe estar
-        entre 1 y 100`;
+function putNumber(event) {
+    console.log(numberUpdate.value);
+    event.preventDefault();
+    attemptNumber.innerHTML = calculate()
+    autoReply.innerHTML = textReply(numberUpdate.value)
+}
+
+function textReply(number) {
+    if (number <= 0 || number >= 100 || number == "") {
+        return `El número debe estar entre 1 y 100`;
+    } else if (number > thisNumber) {
+        return `Demasiado alto`;
+    } else if (number < thisNumber) {
+        return `Demasiado bajo`;
+    } else {
+        return `Has ganado campeona!!!`;
     }
 }
 
 buttonElement.addEventListener('click', putNumber);
-
-let calculator = 0;
-function calculate() {
-    attemptNumber.innerHTML = `Número de intentos: ` + (calculator += 1);
-}
-
-buttonElement.addEventListener('click', calculate);
-
-
